@@ -1,0 +1,3 @@
+/Users/hester/CLionProjects/s21_matrix+/cmake-build-debug/CMakeFiles/s21_matrix_.dir
+/Users/hester/CLionProjects/s21_matrix+/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/hester/CLionProjects/s21_matrix+/cmake-build-debug/CMakeFiles/rebuild_cache.dir
