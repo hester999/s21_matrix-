@@ -49,8 +49,14 @@ cmake_ninja_workdir = /Users/hester/CLionProjects/s21_matrix+/cmake-build-debug/
 
 build cmake_object_order_depends_target_s21_matrix_: phony || CMakeFiles/s21_matrix_.dir
 
-build CMakeFiles/s21_matrix_.dir/main.cpp.o: CXX_COMPILER__s21_matrix__unscanned_Debug /Users/hester/CLionProjects/s21_matrix+/main.cpp || cmake_object_order_depends_target_s21_matrix_
-  DEP_FILE = CMakeFiles/s21_matrix_.dir/main.cpp.o.d
+build CMakeFiles/s21_matrix_.dir/func.cpp.o: CXX_COMPILER__s21_matrix__unscanned_Debug /Users/hester/CLionProjects/s21_matrix+/func.cpp || cmake_object_order_depends_target_s21_matrix_
+  DEP_FILE = CMakeFiles/s21_matrix_.dir/func.cpp.o.d
+  FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk -fcolor-diagnostics
+  OBJECT_DIR = CMakeFiles/s21_matrix_.dir
+  OBJECT_FILE_DIR = CMakeFiles/s21_matrix_.dir
+
+build CMakeFiles/s21_matrix_.dir/test.cpp.o: CXX_COMPILER__s21_matrix__unscanned_Debug /Users/hester/CLionProjects/s21_matrix+/test.cpp || cmake_object_order_depends_target_s21_matrix_
+  DEP_FILE = CMakeFiles/s21_matrix_.dir/test.cpp.o.d
   FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk -fcolor-diagnostics
   OBJECT_DIR = CMakeFiles/s21_matrix_.dir
   OBJECT_FILE_DIR = CMakeFiles/s21_matrix_.dir
@@ -63,7 +69,7 @@ build CMakeFiles/s21_matrix_.dir/main.cpp.o: CXX_COMPILER__s21_matrix__unscanned
 #############################################
 # Link the executable s21_matrix_
 
-build s21_matrix_: CXX_EXECUTABLE_LINKER__s21_matrix__Debug CMakeFiles/s21_matrix_.dir/main.cpp.o
+build s21_matrix_: CXX_EXECUTABLE_LINKER__s21_matrix__Debug CMakeFiles/s21_matrix_.dir/func.cpp.o CMakeFiles/s21_matrix_.dir/test.cpp.o
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk
   OBJECT_DIR = CMakeFiles/s21_matrix_.dir
   POST_BUILD = :

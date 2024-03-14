@@ -14,10 +14,10 @@ private:
     double **matrix_;         // Pointer to the memory where the matrix is allocated
 
 public:
-    S21Matrix(); // консрукто
+    S21Matrix(); // консруктор по умолчанию
     S21Matrix(int rows, int columns); // консрукто  с параметрами
     S21Matrix(const S21Matrix &other); // консрукто копиорования
-   // S21Matrix(S21Matrix &&other); // консрукто
+    S21Matrix(S21Matrix &&other); // консруктор пермещения
     ~S21Matrix(); // деструктор
 
 
@@ -29,17 +29,22 @@ public:
     void MulMatrix(const S21Matrix &other);
     S21Matrix Transpose();
     S21Matrix CalcComplements();
+
+    void get_minor(S21Matrix &minor_matrix, int remove_row, int remove_col);
+
+
     double Determinant();
+
     S21Matrix InverseMatrix();
 
     void CreateMatrix(int rows, int columns);
     void FreeMatrix();
 
     void setCol(int cols);
-    int getCols(){return cols_;};
+    int getCols()  {return cols_;};
 
     void setRows(int rows);
-    int getRows(){return rows_;};
+    int getRows()  {return rows_;};
 
     double **getMatrix(){return matrix_;};
 
@@ -48,22 +53,34 @@ public:
     double getValue(int row, int col) const;
 
     S21Matrix& operator+=(const S21Matrix &other);
+
     S21Matrix operator+(const S21Matrix &other);
+
     S21Matrix& operator-=(const S21Matrix &other);
+
     S21Matrix operator-(const S21Matrix &other);
-    S21Matrix operator*=(const S21Matrix &other);
+
+    S21Matrix& operator*=(const S21Matrix &other);
+
     S21Matrix operator*(const S21Matrix &other);
-    S21Matrix operator*=(const double num);
+
+    S21Matrix& operator*=(const double num);
+
     S21Matrix operator*(const double num);
-    S21Matrix & operator=(const S21Matrix &other);
+
+    S21Matrix& operator=(const S21Matrix &other);
+
     bool operator==(const S21Matrix &other);
+
     double &operator()(int i, int j);
-    double &operator()(int i, int j) const;
+
+    const double& operator()(int i, int j) const;
 
 
 
-    void Valid_rows_cols(const S21Matrix &other);
+    void Valid_rows_cols_for_matrix(const S21Matrix &other);
+    void Valid_rows_cols();
 
 };
 
-#endif //S21_MATRIX__S21_MATRIX_OOP_H
+#endif
