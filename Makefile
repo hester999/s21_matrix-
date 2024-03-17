@@ -12,8 +12,8 @@ $(LIB):
 	ar rc $(LIB) s21_matrix_oop.o
 	rm s21_matrix_oop.o
 
-test: $(LIB)
-	$(CC) $(CFLAGS) $(COVFLAGS) -c matrix_tests/*.cpp
+test: clean $(LIB)
+	$(CC) $(CFLAGS) $(COVFLAGS) -c matrix_tests/test.cpp
 	$(CC) $(CFLAGS) $(COVFLAGS) -c s21_matrix_oop.cpp
 	$(CC) $(CFLAGS) $(COVFLAGS) -o $(TEST_EXEC) *.o $(LIB) $(GTEST_LIB)
 	./$(TEST_EXEC)

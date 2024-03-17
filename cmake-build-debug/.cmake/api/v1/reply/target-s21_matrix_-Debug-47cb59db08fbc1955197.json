@@ -100,7 +100,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "func.cpp",
+			"path" : "s21_matrix_oop.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -111,7 +111,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "test.cpp",
+			"path" : "main.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

@@ -1,5 +1,6 @@
 #include <iostream>
 #include "s21_matrix_oop.h"
+#include <math.h>
 
 
 
@@ -151,6 +152,9 @@ void S21Matrix::SubMatrix(const S21Matrix &other) {
 
 
 void S21Matrix::MulNumber(const double num)  {
+    if(isinf(num) || isnan(num)){
+        throw std::length_error(calc_error);
+    }
 
     for(int i =0; i<rows_; i++){
         for (int j = 0; j<cols_; j++){
@@ -168,13 +172,12 @@ void S21Matrix::MulMatrix(const S21Matrix &other) {
         for (int j = 0; j < other.cols_; j++) {
             for (int k = 0; k < cols_; k++) {
 //                result.matrix_[i][j] += matrix_[i][k] * other.matrix_[k][j];
-                result(i,j) += (*this)(i,j) * other(i,j);
+                result(i,j) += (*this)(i,k) * other(k,j);
             }
         }
     }
     *this = result;
 }
-
 
 bool S21Matrix::EqMatrix(const S21Matrix &other) {
     bool res = true;
@@ -276,19 +279,19 @@ void S21Matrix::get_minor(S21Matrix &minor_matrix, int remove_row, int remove_co
 S21Matrix  S21Matrix::InverseMatrix(){
     Valid_rows_cols();
     S21Matrix res_matrix(rows_,cols_);
-    double  det = this->Determinant();
+    double  det = Determinant();
     if(det == 0){
         throw std::length_error(calc_error);
     }
+    res_matrix = CalcComplements();
 
-    res_matrix = this->CalcComplements();
-    res_matrix.Transpose();
-
+    res_matrix = res_matrix.Transpose();
     res_matrix.MulNumber(1/det);
-
     return res_matrix;
 
 }
+
+
 
 /// Конец блока арифметики
 
@@ -345,11 +348,6 @@ S21Matrix S21Matrix::operator+(const S21Matrix &other) {
     return result;
 }
 
-S21Matrix& S21Matrix::operator*=(const double num) {
-    Valid_rows_cols();
-    MulNumber(num);
-    return *this;
-}
 
 S21Matrix S21Matrix::operator*(const double num) {
     Valid_rows_cols();
@@ -358,20 +356,43 @@ S21Matrix S21Matrix::operator*(const double num) {
     return result;
 }
 
-
-S21Matrix&  S21Matrix::operator*=(const S21Matrix &other){
-    this->MulMatrix(other);
+S21Matrix& S21Matrix::operator*=(const double num) {
+    Valid_rows_cols();
+    MulNumber(num);
     return *this;
 }
+
+
 
 S21Matrix&  S21Matrix::operator-=(const S21Matrix &other) {
     this->SubMatrix(other);
     return *this;
 }
 
+
+
+S21Matrix& S21Matrix::operator*=(const S21Matrix &other){
+    Valid_rows_cols_for_matrix(other);
+
+    this->MulMatrix(other);
+
+    return  *this;
+}
+
+
+S21Matrix S21Matrix::operator*(const S21Matrix &other){
+    Valid_rows_cols_for_matrix(other);
+    S21Matrix result =*this;
+    result.MulMatrix(other);
+
+    return  result;
+}
+
+
+
 S21Matrix  S21Matrix::operator-(const S21Matrix &other) {
     S21Matrix result = *this;
-    result.SumMatrix(other);
+    result.SubMatrix(other);
     return result;
 
 }
@@ -396,4 +417,12 @@ double& S21Matrix::operator()(int i, int j) {
 }
 
 
+void S21Matrix::PrintMatrix(S21Matrix& matrix) {
+    for (int i = 0; i < matrix.getRows(); ++i) {
+        for (int j = 0; j < matrix.getCols(); ++j) {
+            std::cout << matrix.getValue(i, j) << " ";
+        }
+        std::cout << std::endl;
+    }
+}
 

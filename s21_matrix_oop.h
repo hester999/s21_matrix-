@@ -3,7 +3,8 @@
 #define S21_MATRIX__S21_MATRIX_OOP_H
 
 #include <string>
-
+#include <cmath>
+#include "iostream"
 const std::string invalid_matrix{"Invalid matrix"};
 const std::string calc_error{"Calculation error"};
 
@@ -60,9 +61,13 @@ public:
 
     S21Matrix operator-(const S21Matrix &other);
 
+
+
     S21Matrix& operator*=(const S21Matrix &other);
 
     S21Matrix operator*(const S21Matrix &other);
+
+
 
     S21Matrix& operator*=(const double num);
 
@@ -80,6 +85,8 @@ public:
 
     void Valid_rows_cols_for_matrix(const S21Matrix &other);
     void Valid_rows_cols();
+
+    void PrintMatrix(S21Matrix& matrix);
 
 };
 
